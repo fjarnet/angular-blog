@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Article } from '../article';
 import { NgForm } from '@angular/forms';
 
@@ -8,23 +8,33 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
-  article: Article;
+  @Input() article: Article;
   @Output() onCreate: EventEmitter<any>;
+  @Output() onUpdate: EventEmitter<Article>;
 
   constructor() {
     this.article = new Article();
     this.onCreate = new EventEmitter();
+    this.onUpdate = new EventEmitter();
   }
 
   ngOnInit() {
   }
 
   submit(form: NgForm) {
-    this.onCreate.next({
-      title: this.article.title,
-      content: this.article.content
-    });
-    this.article = new Article();
+    if (this.article.id != null) {
+      this.onUpdate.next({
+        ...this.article
+      });
+    } else {
+      this.onCreate.next({
+        title: this.article.title,
+        content: this.article.content
+      });
+    }
+
+    form.resetForm(new Article());
+    this.article.id = undefined;
   }
 
 }

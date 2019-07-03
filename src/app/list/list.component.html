@@ -1,19 +1,18 @@
 <div class="articleList">
-  <div
-  class="article"
-  *ngFor="let article of data; index as i; even as isEven"
-  [ngClass]="{ even: isEven }"
+  <div class="article"
+      *ngFor="let article of data; index as i; even as isEven"
+      [ngClass]="{ even: isEven }"
   >
     <h2 title="Article n°{{ i+1 }}">{{ article.title }} <small class="text-muted">#{{ article.id }}</small></h2>
     <p class="text-justify">{{ article.content }}</p>
-    <div class="dropdown text-right">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Actions
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Modifier</a>
-            <a class="dropdown-item text-danger" href="#">Supprimer</a>
-        </div>
-      </div>
+
+    <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+      <button type="button" class="btn btn-success" (click)="doAction('EDIT', article.id)">
+        <img src="/assets/img/edit.svg" width="24" /> Modifier
+      </button>
+      <button type="button" class="btn btn-danger" (click)="doAction('DELETE', article.id)">
+        <img src="/assets/img/delete.svg" width="24" /> Supprimer
+      </button>
+    </div>
   </div>
 </div>

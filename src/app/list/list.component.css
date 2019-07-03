@@ -9,13 +9,17 @@
   color: #CC0000;
 }
 
-.article.even {
+.article:nth-child(even) {
   background: #f6f6f6;
 }
-.article.even h2 {
+.article:nth-child(even) h2 {
   color: #CCCC00;
 }
 
 .article:hover {
   background: #F0F0F0;
+}
+
+.article p {
+  white-space: pre-line;
 }

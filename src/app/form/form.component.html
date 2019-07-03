@@ -1,5 +1,5 @@
 <fieldset>
-  <legend>Créer un article</legend>
+  <legend>{{ article.id != null ? 'Modifier l\'article #' + article.id : 'Créer un article' }}</legend>
   <form class="form-horizontal" (ngSubmit)="myForm.valid && submit(myForm)" #myForm="ngForm" [ngClass]="{ submitted: myForm.submitted }">
       <div class="form-group">
         <label for="articleTitle">Titre</label>

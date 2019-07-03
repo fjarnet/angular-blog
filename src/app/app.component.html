@@ -3,9 +3,15 @@
 <div class="container">
   <h1>Bienvenue sur IB Blog !</h1>
   <button class="btn btn-secondary" (click)="swapEditing()">{{ editing ? 'Revenir à la liste' : 'Créer un article' }}</button>
-  <app-form *ngIf="editing; else articleListTpl" (onCreate)="addArticle($event)"></app-form>
+  <app-form
+    *ngIf="editing; else articleListTpl"
+    (onCreate)="addArticle($event)"
+    (onUpdate)="updateArticle($event)"
+    [article]="editArticle"
+  >
+  </app-form>
 </div>
 
 <ng-template #articleListTpl>
-  <app-list [data]="articles"></app-list>
+  <app-list [data]="articles" (onAction)="listAction($event)"></app-list>
 </ng-template>
