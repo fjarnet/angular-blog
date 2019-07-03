@@ -1,0 +1,30 @@
+<fieldset>
+  <legend>Créer un article</legend>
+  <form class="form-horizontal" (ngSubmit)="myForm.valid && submit(myForm)" #myForm="ngForm" [ngClass]="{ submitted: myForm.submitted }">
+      <div class="form-group">
+        <label for="articleTitle">Titre</label>
+        <input id="articleTitle" type="text" class="form-control" name="title" placeholder="Saisir un titre ici" [(ngModel)]="article.title"
+        required minlength="6" />
+        <span *ngIf="myForm.controls.title?.errors?.required && myForm.submitted"
+            class="error-msg" >Ce champ est obligatoire.</span>
+        <span *ngIf="myForm.controls.title?.errors?.minlength && myForm.submitted"
+            class="error-msg" >Veuillez saisir au moins 6 caractères.</span>
+      </div>
+      <div class="form-group">
+        <label for="articleContent">Contenu</label>
+        <textarea id="articleContent" type="text" class="form-control" name="content" placeholder="Saisir un texte ici" required [(ngModel)]="article.content" rows="10"></textarea>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6">
+            <button class="btn btn-secondary" type="reset">Annuler</button>
+          </div>
+          <div class="col-sm-6">
+            <button class="btn btn-primary" type="submit">Valider</button>
+          </div>
+        </div>
+      </div>
+    </form>
+</fieldset>
+

@@ -1,0 +1,21 @@
+.article {
+  padding: 10px;
+  margin: 10px 0;
+  transition-duration: 0.5s;
+  transition-property: all;
+  border-radius: 10px;
+}
+.article h2 {
+  color: #CC0000;
+}
+
+.article.even {
+  background: #f6f6f6;
+}
+.article.even h2 {
+  color: #CCCC00;
+}
+
+.article:hover {
+  background: #F0F0F0;
+}
