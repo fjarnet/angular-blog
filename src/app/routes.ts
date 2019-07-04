@@ -23,7 +23,17 @@ export const ROUTES: Routes = [
     redirectTo: '/home'
   },
   {
+    path: 'forbidden',
+    component: NotFoundViewComponent,
+    data: {
+      imgUrl: 'https://i.chzbgr.com/full/1475826432/h670525A6/'
+    }
+  },
+  {
     path: '**',
-    component: NotFoundViewComponent
+    component: NotFoundViewComponent,
+    data: {
+      imgUrl: 'https://www.hostinger.nl/assets/images/404-3a53e76ef1.png'
+    }
   }
 ];
