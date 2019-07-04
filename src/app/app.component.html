@@ -3,5 +3,19 @@
     <div class="jumbotron mt-3">
         <h1 class="display-4">Bienvenue sur IB Blog !</h1>
     </div>
-    <router-outlet></router-outlet>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <a href="#" [routerLink]="[{ outlets: { primary: 'home', sidebar: 'dynamicform' }}]" class="btn btn-secondary btn-sm">Créer un article (dynamique)</a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-7">
+        <router-outlet></router-outlet>
+      </div>
+      <div class="col-sm-5">
+          <router-outlet name="sidebar"></router-outlet>
+      </div>
+    </div>
 </div>

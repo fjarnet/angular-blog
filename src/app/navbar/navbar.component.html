@@ -6,7 +6,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link" href="#" [routerLink]="['home']">Accueil</a>
+              <a class="nav-link" href="#" [routerLink]="[{ outlets: { primary: 'home', sidebar: null } }]">Accueil</a>
             </li>
             <li class="nav-item dropdown" [routerLinkActive]="'active'">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -21,13 +21,13 @@
                 </div>
             </li>
             <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link" href="#" [routerLink]="['form']">Ajouter un article</a>
+              <a class="nav-link" href="#" [routerLink]="[{ outlets: { primary: 'form', sidebar: null } }]">Ajouter un article</a>
             </li>
             <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link" href="#" [routerLink]="['forbidden']">403</a>
+              <a class="nav-link" href="#" [routerLink]="[{ outlets: { primary: 'forbidden', sidebar: null } }]">403</a>
             </li>
             <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link" href="#" [routerLink]="['toto']">404</a>
+              <a class="nav-link" href="#" [routerLink]="[{ outlets: { primary: 'toto404', sidebar: null } }]">404</a>
             </li>
           </ul>
         </div>
