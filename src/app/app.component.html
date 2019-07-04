@@ -1,7 +1,9 @@
 <app-navbar></app-navbar>
 
 <div class="container">
-  <h1>Bienvenue sur IB Blog !</h1>
+    <div class="jumbotron mt-3">
+        <h1 class="display-4">Bienvenue sur IB Blog !</h1>
+    </div>
   <button class="btn btn-secondary" (click)="swapEditing()">{{ editing ? 'Revenir à la liste' : 'Créer un article' }}</button>
   <app-form
     *ngIf="editing; else articleListTpl"

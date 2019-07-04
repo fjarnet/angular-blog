@@ -4,16 +4,17 @@
   transition-duration: 0.5s;
   transition-property: all;
   border-radius: 10px;
+  border: 1px solid #CCC;
 }
 .article h2 {
-  color: #CC0000;
+  color: #2a6279;
 }
 
 .article:nth-child(even) {
   background: #f6f6f6;
 }
 .article:nth-child(even) h2 {
-  color: #CCCC00;
+  color: #AA0000;
 }
 
 .article:hover {
@@ -22,4 +23,5 @@
 
 .article p {
   white-space: pre-line;
+  word-wrap: break-word;
 }

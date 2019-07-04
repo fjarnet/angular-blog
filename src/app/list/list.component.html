@@ -1,17 +1,28 @@
 <div class="articleList">
+
+  <div class="form-group row">
+    <label for="searchInput" class="col-sm-2 col-form-label">Recherche :</label>
+    <div class="col-sm-10">
+        <input
+        id="searchInput" placeholder="Mots-clés de la recherche" class="form-control"
+        [(ngModel)]="keywords" (ngModelChange)="doSearch()"
+      />
+    </div>
+  </div>
+
   <div class="article"
-      *ngFor="let article of data; index as i; even as isEven"
+      *ngFor="let article of (keywords ? filteredData : data); index as i; even as isEven"
       [ngClass]="{ even: isEven }"
   >
     <h2 title="Article n°{{ i+1 }}">{{ article.title }} <small class="text-muted">#{{ article.id }}</small></h2>
     <p class="text-justify">{{ article.content }}</p>
 
     <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-      <button type="button" class="btn btn-success" (click)="doAction('EDIT', article.id)">
-        <img src="/assets/img/edit.svg" width="24" /> Modifier
+      <button type="button" class="btn btn-light" (click)="doAction('EDIT', article.id)">
+        <img src="/assets/img/edit.svg" width="16" /> Modifier
       </button>
-      <button type="button" class="btn btn-danger" (click)="doAction('DELETE', article.id)">
-        <img src="/assets/img/delete.svg" width="24" /> Supprimer
+      <button type="button" class="btn btn-light" (click)="doAction('DELETE', article.id)">
+        <img src="/assets/img/delete.svg" width="16" /> Supprimer
       </button>
     </div>
   </div>

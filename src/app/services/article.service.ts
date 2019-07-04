@@ -2,18 +2,21 @@ import { Injectable } from '@angular/core';
 import { Article } from '../article';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { environment as ENV } from '../../environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArticleService {
   private cache: BehaviorSubject<Array<Article>>;
-  private idCount: number;
+  private articleApiUrl: string;
 
   constructor(private httpClient: HttpClient) {
-    this.idCount = 10;
 
     this.cache = new BehaviorSubject([]);
+
+    this.articleApiUrl = ENV.apiUrl + '/article';
 
     // this.articles = [
       // new Article(1, 'Lorem Ipsum 1', `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`),
@@ -25,7 +28,12 @@ export class ArticleService {
   }
 
   public initialize(): Observable<Array<any>> {
-    this.httpClient.get<Array<any>>('/assets/articles.json').subscribe(
+    // '/assets/articles.json'
+    this.httpClient.get<Array<any>>(this.articleApiUrl)
+    .pipe(
+        map((list) => list.map((element) => new Article(element.id, element.title, element.description)))
+    )
+    .subscribe(
       (list) => this.cache.next(list),
       (error) => console.error(error)
     );
@@ -34,11 +42,17 @@ export class ArticleService {
   }
 
   public create(title: string, content: string): Observable<Array<any>> {
-    const newList = this.cache.value.slice();
-    newList.push(
-      new Article(this.idCount++, title, content)
+    const article = {
+      title,
+      description: content
+    };
+    this.httpClient.post(this.articleApiUrl, article).subscribe(
+      (backArticle: any) => {
+        const newList = this.cache.value.slice();
+        newList.push(new Article(backArticle.id, backArticle.title, backArticle.description));
+        this.cache.next(newList);
+      }
     );
-    this.cache.next(newList);
 
     return this.cache.asObservable();
   }
@@ -48,25 +62,38 @@ export class ArticleService {
   }
 
   public update(article: Article): Observable<Array<any>> {
-    const newList = this.cache.value.slice();
-    let index = newList.findIndex((a) => a.id === article.id);
+    this.httpClient.put(this.articleApiUrl, {
+      id: article.id,
+      title: article.title,
+      description: article.content
+    }).subscribe(
+      (backArticle: any) => {
+        let updatedArticle = new Article(backArticle.id, backArticle.title, backArticle.description);
+        const newList = this.cache.value.slice();
+        let index = newList.findIndex((a) => a.id === updatedArticle.id);
 
-    if (index >= 0) {
-      newList.splice(index, 1, article);
-      this.cache.next(newList);
-    }
+        if (index >= 0) {
+          newList.splice(index, 1, updatedArticle);
+          this.cache.next(newList);
+        }
+      }
+    );
 
     return this.cache.asObservable();
   }
 
   public delete(id: number): Observable<Array<any>> {
-    const newList = this.cache.value.slice();
-    let index = newList.findIndex((article) => article.id === id );
+    this.httpClient.delete(`${this.articleApiUrl}/${id}`).subscribe(
+      () => {
+        const newList = this.cache.value.slice();
+        let index = newList.findIndex((article) => article.id === id );
 
-    if (index >= 0) {
-      newList.splice(index, 1);
-      this.cache.next(newList);
-    }
+        if (index >= 0) {
+          newList.splice(index, 1);
+          this.cache.next(newList);
+        }
+      }
+    );
 
     return this.cache.asObservable();
   }
