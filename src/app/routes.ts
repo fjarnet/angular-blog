@@ -3,6 +3,8 @@ import { NotFoundViewComponent } from './not-found-view/not-found-view.component
 import { ContactViewComponent } from './contact-view/contact-view.component';
 import { ListViewComponent } from './list-view/list-view.component';
 import { FormViewComponent } from './form-view/form-view.component';
+import { ContactAdminComponent } from './contact-admin/contact-admin.component';
+import { ContactAuthorComponent } from './contact-author/contact-author.component';
 
 export const ROUTES: Routes = [
   {
@@ -15,7 +17,19 @@ export const ROUTES: Routes = [
   },
   {
     path: 'contact',
-    component: ContactViewComponent
+    component: ContactViewComponent,
+    children:  [
+      {
+        path: 'admin',
+        component: ContactAdminComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'author/:name',
+        component: ContactAuthorComponent,
+        pathMatch: 'full'
+      }
+    ]
   },
   {
     path: '',

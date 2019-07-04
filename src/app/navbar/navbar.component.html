@@ -8,8 +8,17 @@
             <li class="nav-item" [routerLinkActive]="'active'">
               <a class="nav-link" href="#" [routerLink]="['home']">Accueil</a>
             </li>
-            <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link" href="#" [routerLink]="['contact']">Contact</a>
+            <li class="nav-item dropdown" [routerLinkActive]="'active'">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Contact
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#" [routerLink]="['contact', 'admin']" [routerLinkActive]="'active bg-dark'">Contacter l'admin</a>
+                  <a class="dropdown-item" href="#" [routerLink]="['contact', 'author', 'fabien']" [routerLinkActive]="'active bg-dark'">Contacter Fabien</a>
+                  <a class="dropdown-item" href="#" [routerLink]="['contact', 'author', 'jack']" [routerLinkActive]="'active bg-dark'">Contacter Jack</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#" [routerLink]="['contact']" [routerLinkActive]="'active bg-dark'">Général</a>
+                </div>
             </li>
             <li class="nav-item" [routerLinkActive]="'active'">
               <a class="nav-link" href="#" [routerLink]="['form']">Ajouter un article</a>
