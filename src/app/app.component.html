@@ -1,19 +1,7 @@
 <app-navbar></app-navbar>
-
 <div class="container">
     <div class="jumbotron mt-3">
         <h1 class="display-4">Bienvenue sur IB Blog !</h1>
     </div>
-  <button class="btn btn-secondary" (click)="swapEditing()">{{ editing ? 'Revenir à la liste' : 'Créer un article' }}</button>
-  <app-form
-    *ngIf="editing; else articleListTpl"
-    (onCreate)="addArticle($event)"
-    (onUpdate)="updateArticle($event)"
-    [article]="editArticle"
-  >
-  </app-form>
+    <router-outlet></router-outlet>
 </div>
-
-<ng-template #articleListTpl>
-  <app-list [data]="articles" (onAction)="listAction($event)"></app-list>
-</ng-template>

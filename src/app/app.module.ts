@@ -9,19 +9,28 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ListComponent } from './list/list.component';
 import { FormComponent } from './form/form.component';
 import { ArticleService } from './services/article.service';
+import { ROUTES } from './routes';
+import { NotFoundViewComponent } from './not-found-view/not-found-view.component';
+import { ListViewComponent } from './list-view/list-view.component';
+import { FormViewComponent } from './form-view/form-view.component';
+import { ContactViewComponent } from './contact-view/contact-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     ListComponent,
-    FormComponent
+    FormComponent,
+    NotFoundViewComponent,
+    ListViewComponent,
+    FormViewComponent,
+    ContactViewComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    // RouterModule,
+    RouterModule.forRoot(ROUTES),
   ],
   providers: [ArticleService],
   bootstrap: [AppComponent]

@@ -18,9 +18,12 @@
     <p class="text-justify">{{ article.content }}</p>
 
     <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-      <button type="button" class="btn btn-light" (click)="doAction('EDIT', article.id)">
+      <a class="btn btn-light" [routerLink]="['/form']" [queryParams]="{articleId: article.id}">
         <img src="/assets/img/edit.svg" width="16" /> Modifier
-      </button>
+        </a>
+      <!-- <button type="button" class="btn btn-light" (click)="doAction('EDIT', article.id)">
+        <img src="/assets/img/edit.svg" width="16" /> Modifier
+      </button> -->
       <button type="button" class="btn btn-light" (click)="doAction('DELETE', article.id)">
         <img src="/assets/img/delete.svg" width="16" /> Supprimer
       </button>

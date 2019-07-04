@@ -57,8 +57,14 @@ export class ArticleService {
     return this.cache.asObservable();
   }
 
-  public read(id: number): Article {
-    return this.cache.value.find((article) => article.id === id);
+  public read(id: number): Observable<Article> {
+    return this.httpClient.get(`${this.articleApiUrl}/${id}`).pipe(
+      map((article: any) => new Article(article.id, article.title, article.description))
+    );
+  }
+
+  public readAll(): Observable<Array<Article>> {
+    return this.cache.asObservable();
   }
 
   public update(article: Article): Observable<Array<any>> {

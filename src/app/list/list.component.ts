@@ -48,7 +48,7 @@ export class ListComponent implements OnInit {
         (article) =>
            (article.title.toLowerCase().indexOf(keywords) >= 0
         || article.content.toLowerCase().indexOf(keywords) >= 0)
-      ))
+      )),
     ).subscribe((results: Array<Article>) => this.filteredData = results);
   }
 }
