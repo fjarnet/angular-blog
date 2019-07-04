@@ -5,6 +5,7 @@ import { ListViewComponent } from './list-view/list-view.component';
 import { FormViewComponent } from './form-view/form-view.component';
 import { ContactAdminComponent } from './contact-admin/contact-admin.component';
 import { ContactAuthorComponent } from './contact-author/contact-author.component';
+import { GuardService } from './services/guard.service';
 
 export const ROUTES: Routes = [
   {
@@ -18,7 +19,8 @@ export const ROUTES: Routes = [
   },
   {
     path: 'form',
-    component: FormViewComponent
+    component: FormViewComponent,
+    canActivate: [GuardService]
   },
   {
     path: 'contact',

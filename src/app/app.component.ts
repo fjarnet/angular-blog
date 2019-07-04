@@ -8,7 +8,8 @@ import { ArticleService } from './services/article.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private service: ArticleService) {
+  constructor(
+    private service: ArticleService) {
   }
 
   ngOnInit() {

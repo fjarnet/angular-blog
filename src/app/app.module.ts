@@ -16,6 +16,8 @@ import { FormViewComponent } from './form-view/form-view.component';
 import { ContactViewComponent } from './contact-view/contact-view.component';
 import { ContactAdminComponent } from './contact-admin/contact-admin.component';
 import { ContactAuthorComponent } from './contact-author/contact-author.component';
+import { GuardService } from './services/guard.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,11 @@ import { ContactAuthorComponent } from './contact-author/contact-author.componen
     HttpClientModule,
     RouterModule.forRoot(ROUTES),
   ],
-  providers: [ArticleService],
+  providers: [
+    ArticleService,
+    GuardService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

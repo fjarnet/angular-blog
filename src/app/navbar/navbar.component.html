@@ -1,34 +1,39 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">{{ title }}</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link" href="#" [routerLink]="[{ outlets: { primary: 'home', sidebar: null } }]">Accueil</a>
-            </li>
-            <li class="nav-item dropdown" [routerLinkActive]="'active'">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Contact
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#" [routerLink]="['contact', 'admin']" [routerLinkActive]="'active bg-dark'">Contacter l'admin</a>
-                  <a class="dropdown-item" href="#" [routerLink]="['contact', 'author', 'fabien']" [routerLinkActive]="'active bg-dark'">Contacter Fabien</a>
-                  <a class="dropdown-item" href="#" [routerLink]="['contact', 'author', 'jack']" [routerLinkActive]="'active bg-dark'">Contacter Jack</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#" [routerLink]="['contact']" [routerLinkActive]="'active bg-dark'">Général</a>
-                </div>
-            </li>
-            <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link" href="#" [routerLink]="[{ outlets: { primary: 'form', sidebar: null } }]">Ajouter un article</a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link" href="#" [routerLink]="[{ outlets: { primary: 'forbidden', sidebar: null } }]">403</a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link" href="#" [routerLink]="[{ outlets: { primary: 'toto404', sidebar: null } }]">404</a>
-            </li>
-          </ul>
-        </div>
-  </nav>
+  <a class="navbar-brand" href="#">{{ title }}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" [routerLinkActive]="'active'">
+          <a class="nav-link" href="#" [routerLink]="[{ outlets: { primary: 'home', sidebar: null } }]">Accueil</a>
+        </li>
+        <li class="nav-item dropdown" [routerLinkActive]="'active'">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Contact
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#" [routerLink]="['contact', 'admin']" [routerLinkActive]="'active bg-dark'">Contacter l'admin</a>
+              <a class="dropdown-item" href="#" [routerLink]="['contact', 'author', 'fabien']" [routerLinkActive]="'active bg-dark'">Contacter Fabien</a>
+              <a class="dropdown-item" href="#" [routerLink]="['contact', 'author', 'jack']" [routerLinkActive]="'active bg-dark'">Contacter Jack</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" [routerLink]="['contact']" [routerLinkActive]="'active bg-dark'">Général</a>
+            </div>
+        </li>
+        <li class="nav-item" [routerLinkActive]="'active'">
+          <a class="nav-link" href="#" [routerLink]="[{ outlets: { primary: 'form', sidebar: null } }]">Ajouter un article</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="'active'">
+          <a class="nav-link" href="#" [routerLink]="[{ outlets: { primary: 'forbidden', sidebar: null } }]">403</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="'active'">
+          <a class="nav-link" href="#" [routerLink]="[{ outlets: { primary: 'toto404', sidebar: null } }]">404</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="float-right">
+      <span class="text-muted" *ngIf="isLoggedIn()">User: {{ getUser() }}</span>&nbsp;
+      <a class="btn btn-primary btn-sm" href="#" (click)="login()">{{ isLoggedIn() ? 'Logout' : 'Login' }}</a>
+    </div>
+</nav>
